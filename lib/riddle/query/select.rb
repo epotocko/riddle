@@ -17,6 +17,20 @@ class Riddle::Query::Select
     @options               = {}
   end
 
+  # Support for cloning
+  def initialize_copy(orig)
+    super(orig)
+    @values = @values.dup unless @values.nil?
+    @indices = @indices.dup unless @indices.nil?
+    @wheres = @wheres.dup unless @wheres.nil?
+    @where_alls = @where_alls.dup unless @where_alls.nil?
+    @where_nots = @where_nots.dup unless @where_nots.nil?
+    @where_not_alls = @where_not_alls.dup unless @where_not_alls.nil?
+    @group_by = @group_by.dup unless @group_by.nil?
+    @having = @having.dup unless @having.nil?
+    @options = @options.dup unless @options.nil?
+  end
+
   def values(*values)
     @values += values
     self
