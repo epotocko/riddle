@@ -50,6 +50,8 @@ class Riddle::Query::Insert
       value.to_time.to_i
     when Array
       "(#{value.join(',')})"
+		when Hash
+			"'#{value.to_json.gsub("'", "\\\\'").gsub('\u0026', '&')}'" # HACK: sphinx stores \u0026 as the string u0026
     else
       value
     end
